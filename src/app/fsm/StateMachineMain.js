@@ -1,7 +1,7 @@
 /* eslint-disable */
 import EventEmitter from 'events';
-import ActionState from './State';
-import ViewState from './ViewState';
+import {get} from 'lodash';
+
 
 class StateEvent {
     constructor({state, next, model, from}) {
@@ -33,8 +33,8 @@ class StateMachineMain extends EventEmitter {
 
     }
 
-    go({slider, firstState}) {
-        this.slider = slider;
+    go({newStep, firstState}) {
+        this.newStep = newStep;
         this.next(new Step({
             name: 'firstState',
             to: firstState,
@@ -44,33 +44,27 @@ class StateMachineMain extends EventEmitter {
     }
 
 
-    next(transition) {
-        if (!transition) {
+    next(step) {
+        if (!step) {
             return;
         }
 
-        transition.from = this.currentState;
+        step.from = this.currentState;
 
-        this.currentState = transition.to;
+        this.currentState = step.to;
 
         let evt = new StateEvent({
             model: this.model,
             state: this.currentState,
             next: this.next,
-            from: transition.from
+            from: step.from
         });
 
-        if (this.currentState instanceof ViewState) {
-            const view = this.currentState.view;
-            if (view) {
-                this.slider.handleEvent(evt);
-            }
-        } else if (this.currentState instanceof ActionState) {
-            const action = new this.currentState.action();
-            if (action) {
-                action.handleEvent(event);
-            }
+        const view = get(this, 'currentState.view');
+        if (view) {
+            this.newStep.handleEvent(evt);
         }
+
     }
 
 }

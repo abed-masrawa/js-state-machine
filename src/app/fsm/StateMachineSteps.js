@@ -1,6 +1,8 @@
 
 import React from 'react';
 import StateMachineMain from './StateMachineMain';
+import {get} from 'lodash';
+
 
 class StateMachineSteps extends React.Component {
 
@@ -26,7 +28,7 @@ class StateMachineSteps extends React.Component {
     this.setState({
       view: this.props.Loading
     }, () => {
-      this.stateMachine.go({slider: this, firstState: this.props.firstState});
+      this.stateMachine.go({newStep: this, firstState: this.props.firstState});
     });
 
 
@@ -51,7 +53,7 @@ class StateMachineSteps extends React.Component {
     if (!View) return null;
 
     const {event} = this.state;
-    const name =  event.state.name ;
+    const name =  get(event,'state.name') ;
 
 
     return (

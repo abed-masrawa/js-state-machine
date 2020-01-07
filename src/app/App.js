@@ -4,15 +4,46 @@ import React, {Component} from 'react';
 
 
 import StateMachineSteps from './fsm/StateMachineSteps';
-import ViewState from './fsm/ViewState';
 import {Step} from './fsm/StateMachineMain';
 
+///////////////////
+/// VIEWS  ////////
+//////////////////
 
 import Login from './views/loginView';
 import Landing from './views/LandingView';
 import Main from './views/mainView';
 
 
+
+export  class StateModel {
+  constructor({name, steps: steps,label}) {
+    this.name = name;
+    this.label = label;
+    this.stepsMap = {};
+    if (steps) {
+      steps.forEach(step => this.steps[step.name] = step);
+    }
+  }
+
+  set steps(steps) {
+    if (steps) {
+      steps.forEach(step => this.steps[step.name] = step);
+    }
+  }
+
+  get steps() {
+    return this.stepsMap;
+  }
+}
+
+
+export  class Display extends StateModel {
+  constructor({name, view, steps,label}) {
+    super({name: name, label: label,steps: steps});
+    this.view = view;
+  }
+}
 
 
 export  const  StepTypes = {
@@ -24,24 +55,24 @@ export  const  StepTypes = {
 
 
 
-const loginState = new ViewState({
+const loginState = new Display({
   name: ' Login Page ',
   view: Login,
-  label:'Welcome to  Login Page'
+  label:'Welcome to The Login Page'
 
 });
 
 
-const landingState = new ViewState({
+const landingState = new Display({
   name: 'Landing View',
   view: Landing,
-  label:'Welcome to  Landing Page'
+  label:'Welcome to The Landing Page'
 });
 
-const mainState = new ViewState({
+const mainState = new Display({
   name: 'Main page',
   view: Main,
-  label:'Welcome to  Main Page'
+  label:'Welcome to  The  Main Page'
 });
 
 

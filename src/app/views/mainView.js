@@ -25,7 +25,7 @@ export default class MainView extends View {
         return (
             <div>
                 <header>
-                    <h1>{get(this,'event.state.label')}  </h1>
+                    <p>{get(this, 'event.state.label')}  </p>
 
                 </header>
                 <main>
