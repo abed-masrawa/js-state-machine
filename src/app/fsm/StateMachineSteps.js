@@ -24,12 +24,12 @@ class StateMachineSteps extends React.Component {
 
    }
 
-  componentDidMount() {
-    this.setState({
-      view: this.props.Loading
-    }, () => {
-      this.stateMachine.go({newStep: this, firstState: this.props.firstState});
-    });
+    componentDidMount() {
+        this.setState({
+            view: null,
+        }, () => {
+            this.stateMachine.go({newStep: this, firstState: this.props.firstState});
+        });
 
 
   }
