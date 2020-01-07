@@ -26,7 +26,7 @@ class StateMachineSteps extends React.Component {
     this.setState({
       view: this.props.Loading
     }, () => {
-      this.stateMachine.start({slider: this, initialState: this.props.initialState});
+      this.stateMachine.go({slider: this, firstState: this.props.firstState});
     });
 
 

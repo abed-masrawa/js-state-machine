@@ -39,7 +39,7 @@ const landingState = new ViewState({
 });
 
 const mainState = new ViewState({
-  name: 'State C',
+  name: 'Main page',
   view: Main,
   label:'Welcome to  Main Page'
 });
@@ -48,7 +48,7 @@ const mainState = new ViewState({
 
 
 
-loginState.transitions = [
+loginState.steps = [
   new Step({
     name: StepTypes.LANDING,
     to: landingState,
@@ -62,7 +62,7 @@ loginState.transitions = [
   })
 ];
 
-landingState.transitions = [
+landingState.steps = [
 
   new Step({
     name: StepTypes.LOGIN,
@@ -78,7 +78,7 @@ landingState.transitions = [
 ];
 
 
-mainState.transitions = [
+mainState.steps = [
 
   new Step({
     name: StepTypes.LOGIN,
@@ -107,7 +107,7 @@ class App extends Component {
   render() {
     const stateMachineProps = {
       model: this.state,
-      initialState: loginState,
+      firstState: loginState,
 
     };
     return (

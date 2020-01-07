@@ -5,13 +5,12 @@ import View from './View';
 import {get} from 'lodash';
 
 
-export default class StateAview extends View {
+export default class loginView extends View {
 
     constructor(props) {
         super(props);
         this.openState = this.openState.bind(this);
         this.loading = React.createRef();
-
         this.handleChange = this.handleChange.bind(this);
     }
 
@@ -21,7 +20,7 @@ export default class StateAview extends View {
     }
 
     openState(state) {
-        let userName = get(this,'event.state.userName');
+        let userName = get(this, 'event.state.userName');
         if (!userName) {
             alert('please enter userName');
             return;
@@ -31,7 +30,7 @@ export default class StateAview extends View {
         setTimeout(() => {
             this.loading.current.style.display = 'hidden';
 
-            this.next(this.transitions[state]);
+            this.next(this.steps[state]);
 
         }, 500);
 

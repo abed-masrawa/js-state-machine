@@ -5,7 +5,7 @@ import View from './View';
 import {get} from 'lodash';
 
 
-export default class StateBview extends View {
+export default class landingView extends View {
 
 
   constructor(props) {
@@ -17,7 +17,7 @@ export default class StateBview extends View {
   }
 
     nextState(state) {
-    this.next(this.transitions[state]);
+    this.next(this.steps[state]);
   }
 
   render() {

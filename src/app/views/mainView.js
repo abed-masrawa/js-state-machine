@@ -16,7 +16,7 @@ export default class MainView extends View {
     }
 
     nextState(state) {
-        this.next(this.transitions[state]);
+        this.next(this.steps[state]);
     }
 
 

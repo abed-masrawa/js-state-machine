@@ -1,21 +1,21 @@
 
 export default class State {
-    constructor({name, transitions: steps,label}) {
+    constructor({name, steps: steps,label}) {
         this.name = name;
         this.label = label;
         this.stepsMap = {};
-        if (!!steps) {
-            steps.forEach(transition => this.transitions[transition.name] = transition);
+        if (steps) {
+            steps.forEach(step => this.steps[step.name] = step);
         }
     }
 
-    set transitions(transitions) {
-        if (!!transitions) {
-            transitions.forEach(transition => this.transitions[transition.name] = transition);
+    set steps(steps) {
+        if (steps) {
+            steps.forEach(step => this.steps[step.name] = step);
         }
     }
 
-    get transitions() {
+    get steps() {
         return this.stepsMap;
     }
 }

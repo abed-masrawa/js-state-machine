@@ -27,17 +27,17 @@ class StateMachineMain extends EventEmitter {
     constructor(model) {
         super();
         this.model = model;
-        this.start = this.start.bind(this);
+        this.go = this.go.bind(this);
         this.next = this.next.bind(this);
 
 
     }
 
-    start({slider, initialState}) {
+    go({slider, firstState}) {
         this.slider = slider;
         this.next(new Step({
-            name: 'initialState',
-            to: initialState,
+            name: 'firstState',
+            to: firstState,
             from: null
         }));
 
